@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    .calculator {
+      width: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .calculator button {
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="result" readonly>
+    <table>
+      <tr>
+        <td><button onclick="appendNumber('7')">7</button></td>
+        <td><button onclick="appendNumber('8')">8</button></td>
+        <td><button onclick="appendNumber('9')">9</button></td>
+        <td><button onclick="appendOperator('+')">+</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('4')">4</button></td>
+        <td><button onclick="appendNumber('5')">5</button></td>
+        <td><button onclick="appendNumber('6')">6</button></td>
+        <td><button onclick="appendOperator('-')">-</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('1')">1</button></td>
+        <td><button onclick="appendNumber('2')">2</button></td>
+        <td><button onclick="appendNumber('3')">3</button></td>
+        <td><button onclick="appendOperator('*')">*</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('0')">0</button></td>
+        <td><button onclick="appendOperator('.')">.</button></td>
+        <td><button onclick="calculate()">=</button></td>
+        <td><button onclick="appendOperator('/')">/</button></td>
+      </tr>
+    </table>
+    <button onclick="clearResult()">clear</button>
+  </div>
+
+  <script>
+    const resultInput = document.getElementById('result');
+    let result = '';
+
+    function appendNumber(num) {
+      result += num;
+      updateResult();
+    }
+
+    function appendOperator(operator) {
+      result += operator;
+      updateResult();
+    }
+
+    function calculate() {
+      try {
+        result = eval(result).toString();
+      } catch (error) {
+        result = 'Error';
+      }
+      updateResult();
+    }
+
+    function clearResult() {
+      result = '';
+      updateResult();
+    }
+
+    function updateResult() {
+      resultInput.value = result;
+    }
+  </script>
+</body>
+</html>
